@@ -19,6 +19,7 @@ BuildRequires:	shapelib-devel
 BuildRequires:  wget 
 BuildRequires:  gtk+2-devel
 BuildRequires:  popt-devel
+Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Summary:	%{Summary}
 
 %description 
