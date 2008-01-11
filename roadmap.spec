@@ -55,14 +55,15 @@ install -m644 roadmap-16.png -D %{buildroot}%{_miconsdir}/%{name}.png
 install -m644 roadmap-32.png -D %{buildroot}%{_iconsdir}/%{name}.png
 install -m644 roadmap-48.png -D %{buildroot}%{_liconsdir}/%{name}.png
 
-install -d %{buildroot}%{_menudir}
-cat <<EOF > %{buildroot}%{_menudir}/%{name}
-?package(%{name}):command="%{name}" \
-                icon=%{name}.png \
-                needs="x11" \
-                section="More Applications/Sciences/Geosciences" \
-                title="Roadmap"\
-                longtitle="%{Summary}"
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
+cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
+[Desktop Entry]
+Type=Application
+Exec=%{name}
+Icon=%{name}
+Categories=Education;Science;Geology;
+Name=Roadmap
+Comment=%{Summary}
 EOF
 
 %post
@@ -85,4 +86,4 @@ rm -rf %{buildroot}
 %{_miconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
-%{_menudir}/%{name}
+%{_datadir}/applications/mandriva-%{name}.desktop
