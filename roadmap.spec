@@ -15,9 +15,10 @@ Source1:	http://downloads.sourceforge.net/roadmap/roadmap-1.2.0-wince-arm.cab
 Patch2:		roadmap-1.2.1-fix-paths.patch
 Requires:	gpsd
 BuildRequires:	shapelib-devel 
+BuildRequires:	expat-devel
 BuildRequires:  gtk+2-devel
 BuildRequires:  popt-devel
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Buildroot:	%{_tmppath}/%{name}-%{version}
 
 %description 
 A navigation system that displays US street maps (from the US Census Bureau)
