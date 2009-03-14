@@ -1,7 +1,6 @@
 %define name	roadmap
-%define version	1.0.10
-%define	rel	5
-%define release	%mkrel %{rel}
+%define version	1.2.1
+%define release	%mkrel 1
 %define	Summary	GPS Tracker
 
 Name:		%{name}
@@ -9,18 +8,16 @@ Version:	%{version}
 Release:	%{release}
 Group:		Sciences/Geosciences
 License:	GPL
-Source0:	%{name}_1_0_10_src.tar.bz2
-Patch0:		roadmap-1.0.10-gcc4-fix.patch.bz2
-Patch1:		roadmap-1.0.10-add-missing-files.patch.bz2
-Patch2:		roadmap-1.0.10-fix-paths.patch.bz2
-URL:		http://roadmap.digitalomaha.net/
+Summary:	%{Summary}
+URL:		http://roadmap.sourceforge.net/download.html
+Source0:	http://downloads.sourceforge.net/roadmap/%{name}-%{version}-src.tar.gz
+Source1:	http://downloads.sourceforge.net/roadmap/roadmap-1.2.0-wince-arm.cab
+Patch2:		roadmap-1.2.1-fix-paths.patch
 Requires:	gpsd
 BuildRequires:	shapelib-devel 
-BuildRequires:  wget 
 BuildRequires:  gtk+2-devel
 BuildRequires:  popt-devel
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Summary:	%{Summary}
 
 %description 
 A navigation system that displays US street maps (from the US Census Bureau)
@@ -33,11 +30,7 @@ for instructions on using this software!
 
 %prep
 %setup -q -n %{name}-%{version}
-%patch0 -p1 -b .gcc4
-%patch1 -p1
 %patch2 -p1 -b .paths
-wget http://roadmap.digitalomaha.net/maps/usdir.rdm.tgz
-tar -zxf usdir.rdm.tgz
 
 %build
 cd src
@@ -46,25 +39,18 @@ make DESKTOP=GTK2 MODECFLAGS="$RPM_OPT_FLAGS -ffast-math -W -Wall -Wno-unused-pa
 %install
 rm -rf %{buildroot}
 cd src
-%{makeinstall_std} DESKTOP=GTK2 INSTALLDIR=%{_prefix} desktopdir=%{_datadir}/applications
+%{makeinstall_std} \
+    DESKTOP=GTK2 \
+    INSTALLDIR=%{_prefix} \
+    desktopdir=%{buildroot}%{_datadir}/applications
+
 install -m755 gtk2/gtkroadgps -D %{buildroot}%{_bindir}/roadgps
 install -m755 gtk2/gtkroadmap -D %{buildroot}%{_bindir}/roadmap
-install -m644 ../usdir.rdm -D %{buildroot}%{_datadir}/roadmap/usdir.rdm
+#install -m644 ../usdir.rdm -D %{buildroot}%{_datadir}/roadmap/usdir.rdm
 
-install -m644 roadmap-16.png -D %{buildroot}%{_miconsdir}/%{name}.png
-install -m644 roadmap-32.png -D %{buildroot}%{_iconsdir}/%{name}.png
-install -m644 roadmap-48.png -D %{buildroot}%{_liconsdir}/%{name}.png
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
-cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
-[Desktop Entry]
-Type=Application
-Exec=%{name}
-Icon=%{name}
-Categories=Education;Science;Geology;
-Name=Roadmap
-Comment=%{Summary}
-EOF
+install -m644 icons/roadmap-16.png -D %{buildroot}%{_miconsdir}/%{name}.png
+install -m644 icons/roadmap-32.png -D %{buildroot}%{_iconsdir}/%{name}.png
+install -m644 icons/roadmap-48.png -D %{buildroot}%{_liconsdir}/%{name}.png
 
 %if %mdkversion < 200900
 %post
@@ -81,7 +67,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc AUTHORS README
+%doc README
 %{_bindir}/*
 %{_datadir}/%{name}
 %{_datadir}/applications/roadmap.desktop
@@ -90,4 +76,4 @@ rm -rf %{buildroot}
 %{_miconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
-%{_datadir}/applications/mandriva-%{name}.desktop
+%{_datadir}/applications/%{name}.desktop
