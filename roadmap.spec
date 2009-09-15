@@ -1,6 +1,6 @@
 %define name	roadmap
 %define version	1.2.1
-%define release	%mkrel 2
+%define release	%mkrel 3
 %define	Summary	GPS Tracker
 
 Name:		%{name}
@@ -25,9 +25,6 @@ A navigation system that displays US street maps (from the US Census Bureau)
 and tracks a vehicle using GPS. Specific areas can be displayed by selecting
 a street address (street number & name, city, and state).
 RoadMap can run on iPAQ and Zaurus.
-
-Be sure to consult %{_docdir}/%{name}-%{version}/README
-for instructions on using this software!
 
 %prep
 %setup -q -n %{name}-%{version}
