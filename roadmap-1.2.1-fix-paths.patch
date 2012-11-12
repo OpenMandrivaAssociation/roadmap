@@ -1,0 +1,48 @@
+diff -Naur --exclude '*~' --exclude '*.rej' --exclude '*.orig' roadmap-1.2.1/src/rdmcompare roadmap-1.2.1-fix-paths/src/rdmcompare
+--- roadmap-1.2.1/src/rdmcompare	2007-05-29 20:02:01.000000000 +0200
++++ roadmap-1.2.1-fix-paths/src/rdmcompare	2009-03-14 18:25:30.000000000 +0100
+@@ -13,7 +13,7 @@
+ }
+ 
+ 
+-MAPSDIR=/usr/local/share/roadmap
++MAPSDIR=/usr/share/roadmap
+ 
+ STARTDIR=`pwd`
+ TIGERDIR=$1
+diff -Naur --exclude '*~' --exclude '*.rej' --exclude '*.orig' roadmap-1.2.1/src/rdmgendcwmaps roadmap-1.2.1-fix-paths/src/rdmgendcwmaps
+--- roadmap-1.2.1/src/rdmgendcwmaps	2007-10-17 04:10:53.000000000 +0200
++++ roadmap-1.2.1-fix-paths/src/rdmgendcwmaps	2009-03-14 18:25:30.000000000 +0100
+@@ -16,7 +16,7 @@
+    exit 1
+ }
+ 
+-maps=/usr/local/share/roadmap
++maps=/usr/share/roadmap
+ prov='*'
+ 
+ if [ $# -eq 0 ] ; then
+diff -Naur --exclude '*~' --exclude '*.rej' --exclude '*.orig' roadmap-1.2.1/src/rdmgenshpmaps roadmap-1.2.1-fix-paths/src/rdmgenshpmaps
+--- roadmap-1.2.1/src/rdmgenshpmaps	2007-10-09 03:21:14.000000000 +0200
++++ roadmap-1.2.1-fix-paths/src/rdmgenshpmaps	2009-03-14 18:29:16.000000000 +0100
+@@ -23,7 +23,7 @@
+ # http://geodepot.statcan.ca/Diss/2006Dissemination/Data/FRR_RNF_e.cfm?language=E&format=A
+ #
+ 
+-maps=/usr/local/share/roadmap
++maps=/usr/share/roadmap
+ 
+ if [ $# -eq 0 ] ; then
+     usage
+diff -Naur --exclude '*~' --exclude '*.rej' --exclude '*.orig' roadmap-1.2.1/src/roadmap_download.c roadmap-1.2.1-fix-paths/src/roadmap_download.c
+--- roadmap-1.2.1/src/roadmap_download.c	2009-01-16 18:00:04.000000000 +0100
++++ roadmap-1.2.1-fix-paths/src/roadmap_download.c	2009-03-14 18:25:30.000000000 +0100
+@@ -777,7 +777,7 @@
+    roadmap_config_declare
+       ("preferences",
+       &RoadMapConfigSource,
+-      "/usr/local/share/roadmap/" ROADMAP_FILE_NAME_FORMAT);
++      "/usr/share/roadmap/" ROADMAP_FILE_NAME_FORMAT);
+ 
+    snprintf (default_destination, sizeof(default_destination),
+              "%s/maps", roadmap_path_user());
