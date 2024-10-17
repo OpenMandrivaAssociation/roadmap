@@ -9,7 +9,7 @@ Release:	%{release}
 Group:		Sciences/Geosciences
 License:	GPL
 Summary:	%{Summary}
-URL:		http://roadmap.sourceforge.net/download.html
+URL:		https://roadmap.sourceforge.net/download.html
 Source0:	http://downloads.sourceforge.net/roadmap/%{name}-%{version}-src.tar.gz
 Source1:	http://downloads.sourceforge.net/roadmap/roadmap-1.2.0-wince-arm.cab
 Patch2:		roadmap-1.2.1-fix-paths.patch
