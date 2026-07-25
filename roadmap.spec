@@ -1,6 +1,6 @@
 %define name	roadmap
 %define version	1.2.1
-%define release	%mkrel 3
+%define release 4
 %define	Summary	GPS Tracker
 
 Name:		%{name}
